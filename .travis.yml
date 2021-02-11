@@ -1,0 +1,21 @@
+dist: xenial
+
+services:
+  - postgresql
+addons:
+  postgresql: "9.4"
+
+before_script:
+ - psql -c "create user decide with password 'decide'" 
+ - psql -c "create database decide owner decide"
+ - psql -U postgres -c "ALTER USER decide CREATEDB"
+ - psql -U postgres -c "DROP DATABASE \"decide\""
+
+language: python 
+python: 
+- "3.6"
+install: 
+- pip install -r requirements.txt
+script: 
+- cd decide
+- python ./manage.py test
