@@ -19,5 +19,4 @@ install:
 script: 
 - cd decide
 - python ./manage.py test store
-sdasdf
 if: branch = master
